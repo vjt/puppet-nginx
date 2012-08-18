@@ -1,0 +1,32 @@
+# Managed by puppet - DO NOT EDIT
+#
+# <%= @ssl ? 'HTTPS' : 'HTTP' %> server listening on port  <%= @port %>.
+#
+server {
+    listen               <%= @port %>;
+    server_name          <%= @server_name %>;
+    root                 <%= @root %>;
+    error_page           404 /404.html;
+    error_page           403 /403.html;
+    error_page           500 /50x.html;
+
+    client_max_body_size 48M;
+
+    if ($http_host != '<%= @server_name %>') {
+      rewrite ^ $scheme://<%= @server_name %>$uri permanent;
+    }
+
+    <%- if @ssl -%>
+    include ssl.conf;
+    <%- end -%>
+
+    <%- if @apps -%>
+    include <%= @hostapps %>/*.conf;
+    <%- end -%>
+
+    <%- @redir.each do |from, to| %>
+    location /<%= from %> {
+      rewrite ^/<%= from %>(.*) <%= to %>$1 permanent;
+    }
+    <%- end -%>
+}

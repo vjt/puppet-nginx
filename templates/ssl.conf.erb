@@ -1,0 +1,5 @@
+# vim: ft=nginx
+#
+ssl on;
+ssl_certificate     <%= @ssldir %>/<%= @sslcert %>;
+ssl_certificate_key <%= @ssldir %>/<%= @sslkey %>;

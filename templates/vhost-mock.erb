@@ -1,0 +1,17 @@
+# Managed by puppet - DO NOT EDIT
+#
+# <%= @server_name %> mock vhost that listens on <%= @port %>
+# and 301-redirects all requests to the <%= @mock.upcase %>
+# counterpart.
+#
+server {
+    listen      <%= @port %>;
+    server_name <%= @server_name %>;
+    root        <%= @root %>;
+
+    <%- if @ssl -%>
+    include ssl.conf;
+    <%- end -%>
+
+    rewrite ^ <%= @mock %>://<%= @server_name %>$uri permanent;
+}

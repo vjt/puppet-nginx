@@ -1,0 +1,56 @@
+html, body { height: 100% }
+html { background-image: -webkit-linear-gradient(top, #888, #ccc) }
+body { background: transparent url(ifad.png) no-repeat scroll right -50px }
+
+#name {
+  font-family: Courier, Monaco, monospace;
+  font-size: 64px;
+  text-shadow: #777 10px 7px 6px;
+  font-weight: bold;
+
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  -webkit-transition: all 0.6s ease;
+  -webkit-transform: rotate(340deg);
+}
+
+#name.roll {
+  -webkit-transition: all 4s ease;
+  -webkit-transform: rotate(1deg);
+  text-shadow: #777 40px 60px 10px;
+  color: #600;
+  font-size:112px;
+  left: 20%;
+}
+
+#error {
+  font-family: Courier, Monaco, monospace;
+  font-size: 64px;
+  text-shadow: #777 10px 7px 6px;
+  font-weight: bold;
+  color: #600;
+
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 20%;
+
+  -webkit-transition: all 0.6s ease;
+}
+
+#error.roll {
+  -webkit-transition: all 2s ease;
+
+  text-shadow: #777 40px 60px 10px;
+  color: #f00;
+  font-size:112px;
+  left: 10%;
+}
+
+
+.banner:hover {
+  cursor: pointer;
+  color: #006;
+}
